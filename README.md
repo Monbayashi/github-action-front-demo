@@ -59,3 +59,17 @@ git push --set-upstream origin main
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
 ```
+
+> エラーを無視して実行
+
+```yml
+    - name: Test code
+      continue-on-error: true
+      id: run-tests
+      run: npm run test
+    - name: Upload test report
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report
+        path: test.json
+```
