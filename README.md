@@ -16,3 +16,17 @@ git remote add origin https://[UserName]@github.com/Monbayashi/second-action-rea
 git push --set-upstream origin main
 
 ```
+
+## if 条件式
+
+```yml
+    - name: Test code
+      id: run-tests
+      run: npm run test
+    - name: Upload test report
+      if: steps.run-tests.outcom == 'failure'
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report
+        path: test.json
+```
