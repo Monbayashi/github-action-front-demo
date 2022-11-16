@@ -24,7 +24,7 @@ git push --set-upstream origin main
       id: run-tests
       run: npm run test
     - name: Upload test report
-      if: steps.run-tests.outcom == 'failure'
+      if: failure() && steps.run-tests.outcom == 'failure'
       uses: actions/upload-artifact@v3
       with:
         name: test-report
