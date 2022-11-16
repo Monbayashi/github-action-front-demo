@@ -41,7 +41,21 @@ git push --set-upstream origin main
     if: failure()
     runs-on: ubuntu-latest
     steps:
-        - name: Output information
-          run: |
-            echo "..."
+      - name: Output information
+        run: |
+        echo "..."
+```
+
+> cache IF
+
+```yml
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci
 ```
