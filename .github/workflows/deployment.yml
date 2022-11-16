@@ -1,4 +1,4 @@
-name: Deploy Project
+name: Section 2 - Deploy Project
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 # on: [push, workflow_dispatch]
 on: workflow_dispatch

@@ -1,4 +1,4 @@
-name: Handle issues
+name: Section 2 - Handle issues
 # on: issues
 on: workflow_dispatch
 jobs:
