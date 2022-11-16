@@ -19,6 +19,8 @@ git push --set-upstream origin main
 
 ## if 条件式
 
+> step IF
+
 ```yml
     - name: Test code
       id: run-tests
@@ -29,4 +31,17 @@ git push --set-upstream origin main
       with:
         name: test-report
         path: test.json
+```
+
+> job IF
+
+```yml
+  report:
+    needs: [lint, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+        - name: Output information
+          run: |
+            echo "..."
 ```
