@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show ubuntu details
-        uses: lsb_release -a
+        run: lsb_release -a
       - name: Inspect files before checkout
         run: ls -la
       - name: Show current directory before checkout
