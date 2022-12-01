@@ -22,15 +22,15 @@ git push --set-upstream origin main
 > step IF
 
 ```yml
-    - name: Test code
-      id: run-tests
-      run: npm run test
-    - name: Upload test report
-      if: failure() && steps.run-tests.outcom == 'failure'
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-report
-        path: test.json
+- name: Test code
+  id: run-tests
+  run: npm run test
+- name: Upload test report
+  if: failure() && steps.run-tests.outcom == 'failure'
+  uses: actions/upload-artifact@v3
+  with:
+    name: test-report
+    path: test.json
 ```
 
 > job IF
@@ -49,27 +49,29 @@ git push --set-upstream origin main
 > cache IF
 
 ```yml
-    - name: Cache dependencies
-      id: cache
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-    - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
+- name: Cache dependencies
+  id: cache
+  uses: actions/cache@v3
+  with:
+    path: node_modules
+    key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+- name: Install dependencies
+  if: steps.cache.outputs.cache-hit != 'true'
+  run: npm ci
 ```
 
 > エラーを無視して実行
 
 ```yml
-    - name: Test code
-      continue-on-error: true
-      id: run-tests
-      run: npm run test
-    - name: Upload test report
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-report
-        path: test.json
+- name: Test code
+  continue-on-error: true
+  id: run-tests
+  run: npm run test
+- name: Upload test report
+  uses: actions/upload-artifact@v3
+  with:
+    name: test-report
+    path: test.json
 ```
+
+SourceTree 確認
